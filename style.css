@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: "Roboto", sans-serif;
+
+}
+
+body {
+    background-color: #8A51FC;
+}
+
+.logo {
+    width: 150px;
+    display: block;
+    margin: 20px auto;
+}
+
+main {
+    background-color: #F4F4F4;
+    width: 420px;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 44px 22px 23px;
+}
+
+label {
+    color: #777777;
+    font-weight: 700px;
+    font-size: 14px;
+}
+
+select,
+input {
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    border: 1px solid #BBBBBB;
+    margin-bottom: 24px;
+    appearance: none;
+    padding-left: 18px;
+    font-weight: 900px;
+   font-size: 16px;
+    color: #555555;
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #772FD3;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700px;
+}
+
+button:hover {
+    opacity: 0,10;
+}
+
+button:active {
+    opacity: 0,6;
+}
+
+section {
+    border-radius: 20px;
+    border: 1px solid #772FD3;
+    margin-top: 36px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4px;
+
+}
+
+.caixa-moeda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seta {
+    margin: 6px 0;
+}
+
+.moeda {
+
+    color: #777777;
+    font-size: 14px;
+}
+
+.valor-moeda {
+    font-size: 20px;
+    color: #555555;
+    font-weight: 700px;
+}

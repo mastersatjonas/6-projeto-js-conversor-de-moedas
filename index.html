@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <img class="logo" src="./assest/logo.gif" alt="">
+    <main>
+
+        <label>
+            Converter <br>de<br>
+            <select>
+                <option>R$ Real Brasileiro</option>
+            </select>
+        </label>
+
+        <label>
+            Converter <br>Para<br>
+            <select class="currency-select">
+                <option value="Dolar">US$ Dólar Amaricano</option>
+                <option value="Euro">€ Euro</option>
+            </select>
+        </label>
+
+        <label>
+            Valor
+            <input  class="input-currency" placeholder="10.000,00">
+        </label>
+
+        <button class="convert-button" onclick="">Converter</button>
+
+        <section>
+            <div class="caixa-moeda">
+                <img src="./assest/real.png" alt="">
+                <p class="">Real</p>
+                <p class="currency-velue-to-convert">R$ 10.000,00</p>
+            </div>
+            <img class="seta" src="./assest/Vector.png" alt="">
+            <div class="caixa-moeda">
+                <img src="./assest/dolar.png" alt="">
+                <p class="">Dólar</p>
+                <p class="currency-velue">R$ 10.000,00</p>
+            </div>
+        </section>
+    </main>
+
+</body>
+<script src="./script.js"></script>
+
+</html>
