@@ -1,71 +1,51 @@
-const convertButton = document.querySelector('.convert-button');
-const currencySelect = document.querySelector('.currency-select');
+document.addEventListener('DOMContentLoaded', () => {
+  const amountInput = document.getElementById('amount');
+  const fromCurrencySelect = document.getElementById('from-currency');
+  const toCurrencySelect = document.getElementById('to-currency');
+  const convertButton = document.getElementById('convert');
+  const resultParagraph = document.getElementById('result');
 
-function convertValues() {
-  const inputCurrencyValue = document.querySelector('.input-currency').value;
-
-  const currencyValueToConvert = document.querySelector('.currency-value-to-convert');
-
-  const currencyValueConverted = document.querySelector('.currency-value');
-
-  const dolarToday = 5.2;
-  const euroToday = 6.2;
-
-  if (currencySelect.value == "dolar") {
-    currencyValueConverted.innerHTML = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(inputCurrencyValue / dolarToday);
+  async function fetchExchangeRates() {
+      const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+      const data = await response.json();
+      return data.rates;
   }
 
-  if (currencySelect.value == "euro") {
-    currencyValueConverted.innerHTML = new Intl.NumberFormat('de-DE', {
-      style: 'currency',
-      currency: 'EUR',
-    }).format(inputCurrencyValue / euroToday);
+  async function convertCurrency() {
+      const amount = parseFloat(amountInput.value);
+      const fromCurrency = fromCurrencySelect.value;
+      const toCurrency = toCurrencySelect.value;
+
+      if (isNaN(amount)) {
+          resultParagraph.textContent = 'Por favor, insira um valor válido.';
+          return;
+      }
+
+      const rates = await fetchExchangeRates();
+      const rate = rates[toCurrency] / rates[fromCurrency];
+      const convertedAmount = amount * rate;
+
+      resultParagraph.textContent = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
   }
 
-  currencyValueToConvert.innerHTML = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }).format(inputCurrencyValue);
-}
+  convertButton.addEventListener('click', convertCurrency);
 
-convertButton.addEventListener('click', convertValues);
+  async function populateCurrencyOptions() {
+      const rates = await fetchExchangeRates();
+      const currencies = Object.keys(rates);
+      currencies.forEach(currency => {
+          const optionFrom = document.createElement('option');
+          optionFrom.value = currency;
+          optionFrom.textContent = currency;
+          fromCurrencySelect.appendChild(optionFrom);
 
+          const optionTo = document.createElement('option');
+          optionTo.value = currency;
+          optionTo.textContent = currency;
+          toCurrencySelect.appendChild(optionTo);
+      });
+  }
 
-/*const convertBuntton = document.querySelector('.convert-button');
-const currencySelect = document.querySelector('.currency-select')
+  populateCurrencyOptions();
+});
 
-function convertVelues() {
-    const inputCurrencyVelue = document.querySelector('.input-currency').value;
-
-    const currencyVelueToConvert = document.querySelector('.currency-velue-to-convert');
-
-    const currencyVelueConverted = document.querySelector('.currency-velue');
-
-    const dolarToday = 5.2;
-    const euroToday = 6.2;
-
-    if (currencySelect.value == "dolar") {
-        currencyVelueConverted.innerHTML = new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-        }).format(inputCurrencyVelue / dolarToday);
-    }
-
-    if (currencySelect.value == "euro") {
-        currencyVelueToConvert.innerHTML = new Intl.NumberFormat('de-DE', {
-            style: 'currency',
-            currency: 'EUR',
-        }).format(inputCurrencyVelue / euroToday);
-    }
-
-    currencyVelueToConvert.innerHTML = new Intl.NumberFormat('pt-br', {
-        style: 'currency',
-        currency: 'BRL',
-    }).format(inputCurrencyVelue);
-
-
-}
-convertBuntton.addEventListener('click', convertVelues);*/
